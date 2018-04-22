@@ -59,15 +59,16 @@ app.post('/join', (req, res) => {
 
 
 app.get("/mypage", (req, res) => {
-    const user_uid = req.session.user_uid;
-    console.log(user_uid)
+    const user_uid = req.session.user_uid;   
+    let getUserUid = ''
     if (user_uid == undefined) {
-        res.redirect("/")
-        return
+        getUserUid = '';
+    } else {
+        getUserUid = '1';
     }
-    
+    console.log(">>>>>>>>>>> ",getUserUid || '')
     res.render("mypage", {
-        nickname: "guest"
+        nickname: getUserUid
     })
 })
 
